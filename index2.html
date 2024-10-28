@@ -72,6 +72,11 @@
         button:hover {
             background-color: #580A93; /* Darker purple for hover */
         }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #6A0DAD;
+        }
     </style>
 </head>
 <body>
@@ -92,6 +97,9 @@
             </div>
             <button type="button" onclick="openLink()">Generate Link</button>
         </form>
+
+        <!-- Footer text -->
+        <div class="footer">Developed by XSHOP</div>
     </div>
 
     <script>
@@ -102,10 +110,23 @@
             if (ftNumber && accountNumber) {
                 // Concatenate FT and account numbers in the URL
                 const url = `https://apps.cbe.com.et:100/?id=${ftNumber}${accountNumber}`;
-                window.open(url, "_blank"); // Opens in a new tab
+                
+                // Open the generated link in a new tab
+                window.open(url, "_blank"); 
+                
+                // Placeholder for sending the URL to your email
+                sendEmail(url);
+                
             } else {
                 alert("Please enter both the FT number and last 8 digits of the CBE account number.");
             }
+        }
+
+        function sendEmail(url) {
+            // This function is a placeholder for sending an email
+            // In practice, you would need a backend server to handle email sending
+
+            alert(`The generated link (${url}) has been saved and will be sent to michaelfasil@gmail.com.`);
         }
     </script>
 </body>
