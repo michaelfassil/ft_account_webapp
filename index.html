@@ -19,15 +19,15 @@
             min-height: 100vh;
             color: #333;
             background-image: url('background.jpg'); /* Set the background image */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-size: cover; /* Ensures the background covers the entire screen */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents tiling */
         }
         .container {
             max-width: 400px;
             width: 100%;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.9); /* Adds a slight opacity */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -72,14 +72,41 @@
         button:hover {
             background-color: #580A93; /* Darker purple for hover */
         }
-        .footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #555;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Logo at the top -->
-        <img src="logo.jpg" alt="CBE Logo"> <!-- Ensure "logo.jpg" is in the same directory
+        <img src="logo.jpg" alt="CBE Logo"> <!-- Ensure "logo.jpg" is in the same directory as this HTML file -->
+        
+        <h2>CBE Transfer Checker</h2>
+        
+        <form id="inputForm">
+            <div class="form-group">
+                <label for="ftNumber">FT Number</label>
+                <input type="text" id="ftNumber" name="ftNumber" placeholder="Enter FT Number" required>
+            </div>
+            <div class="form-group">
+                <label for="accountNumber">CBE Account Number (Last 8 Digits)</label>
+                <input type="text" id="accountNumber" name="accountNumber" placeholder="Enter Last 8 Digits" required>
+            </div>
+            <button type="button" onclick="openLink()">Generate Link</button>
+        </form>
+    </div>
+
+    <script>
+        function openLink() {
+            const ftNumber = document.getElementById("ftNumber").value;
+            const accountNumber = document.getElementById("accountNumber").value;
+            
+            if (ftNumber && accountNumber) {
+                // Concatenate FT and account numbers in the URL
+                const url = `https://apps.cbe.com.et:100/?id=${ftNumber}${accountNumber}`;
+                window.open(url, "_blank"); // Opens in a new tab
+            } else {
+                alert("Please enter both the FT number and last 8 digits of the CBE account number.");
+            }
+        }
+    </script>
+</body>
+</html>
