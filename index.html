@@ -101,14 +101,9 @@
     </div>
 
     <script>
-        // Load saved values from localStorage if they exist
+        // Load only the saved CBE Account Number from localStorage
         document.addEventListener("DOMContentLoaded", function() {
-            const savedFTNumber = localStorage.getItem("ftNumber");
             const savedAccountNumber = localStorage.getItem("accountNumber");
-
-            if (savedFTNumber) {
-                document.getElementById("ftNumber").value = savedFTNumber;
-            }
             if (savedAccountNumber) {
                 document.getElementById("accountNumber").value = savedAccountNumber;
             }
@@ -119,8 +114,7 @@
             const accountNumber = document.getElementById("accountNumber").value;
             
             if (ftNumber && accountNumber) {
-                // Save values to localStorage
-                localStorage.setItem("ftNumber", ftNumber);
+                // Save only the Account Number to localStorage
                 localStorage.setItem("accountNumber", accountNumber);
 
                 // Generate the URL and open it in a new tab
