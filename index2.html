@@ -19,15 +19,15 @@
             min-height: 100vh;
             color: #333;
             background-image: url('background.jpg'); /* Set the background image */
-            background-size: cover; /* Ensures the background covers the entire screen */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat; /* Prevents tiling */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         .container {
             max-width: 400px;
             width: 100%;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Adds a slight opacity */
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -39,7 +39,7 @@
         .container h2 {
             margin-bottom: 20px;
             font-size: 1.5rem;
-            color: #6A0DAD; /* Purple color */
+            color: #6A0DAD;
         }
         .form-group {
             margin-bottom: 15px;
@@ -63,14 +63,14 @@
             padding: 12px;
             font-size: 1rem;
             color: #fff;
-            background-color: #6A0DAD; /* Purple color */
+            background-color: #6A0DAD;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #580A93; /* Darker purple for hover */
+            background-color: #580A93;
         }
         .footer {
             margin-top: 20px;
@@ -81,7 +81,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Logo at the top -->
         <img src="logo.jpg" alt="CBE Logo"> <!-- Ensure "logo.jpg" is in the same directory as this HTML file -->
         
         <h2>CBE Transfer Checker</h2>
@@ -98,35 +97,38 @@
             <button type="button" onclick="openLink()">Generate Link</button>
         </form>
 
-        <!-- Footer text -->
         <div class="footer">Developed by XSHOP</div>
     </div>
 
     <script>
+        // Load saved values from localStorage if they exist
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedFTNumber = localStorage.getItem("ftNumber");
+            const savedAccountNumber = localStorage.getItem("accountNumber");
+
+            if (savedFTNumber) {
+                document.getElementById("ftNumber").value = savedFTNumber;
+            }
+            if (savedAccountNumber) {
+                document.getElementById("accountNumber").value = savedAccountNumber;
+            }
+        });
+
         function openLink() {
             const ftNumber = document.getElementById("ftNumber").value;
             const accountNumber = document.getElementById("accountNumber").value;
             
             if (ftNumber && accountNumber) {
-                // Concatenate FT and account numbers in the URL
+                // Save values to localStorage
+                localStorage.setItem("ftNumber", ftNumber);
+                localStorage.setItem("accountNumber", accountNumber);
+
+                // Generate the URL and open it in a new tab
                 const url = `https://apps.cbe.com.et:100/?id=${ftNumber}${accountNumber}`;
-                
-                // Open the generated link in a new tab
-                window.open(url, "_blank"); 
-                
-                // Placeholder for sending the URL to your email
-                sendEmail(url);
-                
+                window.open(url, "_blank");
             } else {
                 alert("Please enter both the FT number and last 8 digits of the CBE account number.");
             }
-        }
-
-        function sendEmail(url) {
-            // This function is a placeholder for sending an email
-            // In practice, you would need a backend server to handle email sending
-
-            alert(`The generated link (${url}) has been saved and will be sent to michaelfasil@gmail.com.`);
         }
     </script>
 </body>
