@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Link with FT and Account Number</title>
+</head>
+<body>
+    <h2>Enter FT Number and Account Number</h2>
+    <form id="inputForm">
+        <label for="ftNumber">FT Number:</label>
+        <input type="text" id="ftNumber" name="ftNumber" required>
+        <br><br>
+        <label for="accountNumber">Account Number:</label>
+        <input type="text" id="accountNumber" name="accountNumber" required>
+        <br><br>
+        <button type="button" onclick="openLink()">Open Link</button>
+    </form>
+
+    <script>
+        function openLink() {
+            const ftNumber = document.getElementById("ftNumber").value;
+            const accountNumber = document.getElementById("accountNumber").value;
+            
+            if (ftNumber && accountNumber) {
+                // Construct the full URL with parameters
+                const url = `https://apps.cbe.com.et:100/?id=${ftNumber}&account=${accountNumber}`;
+                window.open(url, "_blank"); // Opens in a new tab
+            } else {
+                alert("Please enter both FT number and account number.");
+            }
+        }
+    </script>
+</body>
+</html>
